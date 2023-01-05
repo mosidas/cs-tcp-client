@@ -45,7 +45,7 @@ namespace tcp_client
             this.button_send.Location = new System.Drawing.Point(62, 465);
             this.button_send.Name = "button_send";
             this.button_send.Size = new System.Drawing.Size(108, 39);
-            this.button_send.TabIndex = 0;
+            this.button_send.TabIndex = 99;
             this.button_send.Text = "send";
             this.button_send.UseVisualStyleBackColor = true;
             this.button_send.Click += new System.EventHandler(this.button_send_Click);
@@ -55,7 +55,7 @@ namespace tcp_client
             this.button_sync.Location = new System.Drawing.Point(62, 26);
             this.button_sync.Name = "button_sync";
             this.button_sync.Size = new System.Drawing.Size(108, 39);
-            this.button_sync.TabIndex = 1;
+            this.button_sync.TabIndex = 97;
             this.button_sync.Text = "connect";
             this.button_sync.UseVisualStyleBackColor = true;
             this.button_sync.Click += new System.EventHandler(this.button_sync_Click);
@@ -65,7 +65,7 @@ namespace tcp_client
             this.button_close.Location = new System.Drawing.Point(177, 26);
             this.button_close.Name = "button_close";
             this.button_close.Size = new System.Drawing.Size(145, 39);
-            this.button_close.TabIndex = 2;
+            this.button_close.TabIndex = 98;
             this.button_close.Text = "disconnect";
             this.button_close.UseVisualStyleBackColor = true;
             this.button_close.Click += new System.EventHandler(this.button_close_Click);
@@ -75,8 +75,8 @@ namespace tcp_client
             this.text_port.Location = new System.Drawing.Point(515, 82);
             this.text_port.Name = "text_port";
             this.text_port.Size = new System.Drawing.Size(159, 25);
-            this.text_port.TabIndex = 3;
-            this.text_port.Text = "11111";
+            this.text_port.TabIndex = 2;
+            this.text_port.Text = "44333";
             // 
             // label_port
             // 
@@ -94,7 +94,7 @@ namespace tcp_client
             this.text_message.Name = "text_message";
             this.text_message.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.text_message.Size = new System.Drawing.Size(892, 324);
-            this.text_message.TabIndex = 5;
+            this.text_message.TabIndex = 3;
             // 
             // label_status
             // 
@@ -121,8 +121,8 @@ namespace tcp_client
             this.text_ip.Location = new System.Drawing.Point(515, 32);
             this.text_ip.Name = "text_ip";
             this.text_ip.Size = new System.Drawing.Size(159, 25);
-            this.text_ip.TabIndex = 7;
-            this.text_ip.Text = "127.0.0.1";
+            this.text_ip.TabIndex = 1;
+            this.text_ip.Text = "localhost";
             // 
             // Form1
             // 
