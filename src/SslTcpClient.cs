@@ -108,7 +108,7 @@ namespace tcp_client
             {
                 if(_sslStream != null)
                 {
-                    _sslStream.Close();
+                    SslDirectCall.CloseNotify(_sslStream);
                 }
 
                 if (_client != null)
