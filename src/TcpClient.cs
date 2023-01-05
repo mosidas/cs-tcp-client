@@ -69,11 +69,11 @@ namespace tcp_client
             try
             {
                 client.Close();
-                Debug.WriteLine("disConnected");
+                Debug.WriteLine("disconnected");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("disConnect failed");
+                Debug.WriteLine("disconnect failed");
                 Debug.WriteLine(ex.ToString());
             }
         }

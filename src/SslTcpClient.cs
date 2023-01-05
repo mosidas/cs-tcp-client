@@ -25,7 +25,6 @@ namespace tcp_client
 
             Console.WriteLine("Certificate error: {0}", sslPolicyErrors);
 
-            // Do not allow this client to communicate with unauthenticated servers.
             return false;
         }
 
@@ -45,11 +44,10 @@ namespace tcp_client
                 Debug.WriteLine("connected");
 
                 _sslStream = new SslStream(
-                _client.GetStream(),
-                false,
-                new RemoteCertificateValidationCallback(ValidateServerCertificate),
-                null
-                );
+                    _client.GetStream(),
+                    false,
+                    new RemoteCertificateValidationCallback(ValidateServerCertificate),
+                    null);
 
                 try
                 {
@@ -89,7 +87,7 @@ namespace tcp_client
                 Encoding enc = Encoding.UTF8;
                 byte[] sendBytes = enc.GetBytes(message);
                 _sslStream.Write(sendBytes, 0, sendBytes.Length);
-                Debug.WriteLine($"sent message:{message}");
+                Debug.WriteLine($"sent message: {message}");
             }
             catch (Exception ex)
             {
@@ -108,6 +106,8 @@ namespace tcp_client
             {
                 if(_sslStream != null)
                 {
+                    // close_notify送信はsslstreamに実装されていないので作成。
+                    // コピペ元：https://stackoverflow.com/questions/237807/net-sslstream-doesnt-close-tls-connection-properly
                     SslDirectCall.CloseNotify(_sslStream);
                 }
 
