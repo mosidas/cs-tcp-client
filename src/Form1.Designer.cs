@@ -42,10 +42,9 @@ namespace tcp_client
             // 
             // button_send
             // 
-            this.button_send.Location = new System.Drawing.Point(37, 191);
-            this.button_send.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_send.Location = new System.Drawing.Point(62, 465);
             this.button_send.Name = "button_send";
-            this.button_send.Size = new System.Drawing.Size(65, 26);
+            this.button_send.Size = new System.Drawing.Size(108, 39);
             this.button_send.TabIndex = 0;
             this.button_send.Text = "send";
             this.button_send.UseVisualStyleBackColor = true;
@@ -53,10 +52,9 @@ namespace tcp_client
             // 
             // button_sync
             // 
-            this.button_sync.Location = new System.Drawing.Point(37, 17);
-            this.button_sync.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_sync.Location = new System.Drawing.Point(62, 26);
             this.button_sync.Name = "button_sync";
-            this.button_sync.Size = new System.Drawing.Size(65, 26);
+            this.button_sync.Size = new System.Drawing.Size(108, 39);
             this.button_sync.TabIndex = 1;
             this.button_sync.Text = "connect";
             this.button_sync.UseVisualStyleBackColor = true;
@@ -64,10 +62,9 @@ namespace tcp_client
             // 
             // button_close
             // 
-            this.button_close.Location = new System.Drawing.Point(106, 17);
-            this.button_close.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_close.Location = new System.Drawing.Point(177, 26);
             this.button_close.Name = "button_close";
-            this.button_close.Size = new System.Drawing.Size(87, 26);
+            this.button_close.Size = new System.Drawing.Size(145, 39);
             this.button_close.TabIndex = 2;
             this.button_close.Text = "disconnect";
             this.button_close.UseVisualStyleBackColor = true;
@@ -75,38 +72,35 @@ namespace tcp_client
             // 
             // text_port
             // 
-            this.text_port.Location = new System.Drawing.Point(309, 55);
-            this.text_port.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_port.Location = new System.Drawing.Point(515, 82);
             this.text_port.Name = "text_port";
-            this.text_port.Size = new System.Drawing.Size(97, 19);
+            this.text_port.Size = new System.Drawing.Size(159, 25);
             this.text_port.TabIndex = 3;
             this.text_port.Text = "11111";
             // 
             // label_port
             // 
             this.label_port.AutoSize = true;
-            this.label_port.Location = new System.Drawing.Point(258, 55);
-            this.label_port.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_port.Location = new System.Drawing.Point(430, 82);
             this.label_port.Name = "label_port";
-            this.label_port.Size = new System.Drawing.Size(31, 12);
+            this.label_port.Size = new System.Drawing.Size(47, 18);
             this.label_port.TabIndex = 4;
             this.label_port.Text = "port: ";
             // 
             // text_message
             // 
-            this.text_message.Location = new System.Drawing.Point(37, 90);
-            this.text_message.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_message.Location = new System.Drawing.Point(62, 135);
             this.text_message.Multiline = true;
             this.text_message.Name = "text_message";
-            this.text_message.Size = new System.Drawing.Size(537, 99);
+            this.text_message.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.text_message.Size = new System.Drawing.Size(892, 324);
             this.text_message.TabIndex = 5;
             // 
             // label_status
             // 
             this.label_status.AutoSize = true;
             this.label_status.Font = new System.Drawing.Font("MS UI Gothic", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label_status.Location = new System.Drawing.Point(503, 17);
-            this.label_status.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_status.Location = new System.Drawing.Point(838, 26);
             this.label_status.Name = "label_status";
             this.label_status.Size = new System.Drawing.Size(57, 33);
             this.label_status.TabIndex = 6;
@@ -116,27 +110,25 @@ namespace tcp_client
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(241, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(402, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 12);
+            this.label1.Size = new System.Drawing.Size(93, 18);
             this.label1.TabIndex = 8;
             this.label1.Text = "ip address: ";
             // 
             // text_ip
             // 
-            this.text_ip.Location = new System.Drawing.Point(309, 21);
-            this.text_ip.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_ip.Location = new System.Drawing.Point(515, 32);
             this.text_ip.Name = "text_ip";
-            this.text_ip.Size = new System.Drawing.Size(97, 19);
+            this.text_ip.Size = new System.Drawing.Size(159, 25);
             this.text_ip.TabIndex = 7;
             this.text_ip.Text = "127.0.0.1";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 300);
+            this.ClientSize = new System.Drawing.Size(993, 534);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.text_ip);
             this.Controls.Add(this.label_status);
@@ -146,7 +138,6 @@ namespace tcp_client
             this.Controls.Add(this.button_close);
             this.Controls.Add(this.button_sync);
             this.Controls.Add(this.button_send);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "tcp client";
             this.ResumeLayout(false);

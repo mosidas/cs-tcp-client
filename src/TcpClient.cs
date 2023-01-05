@@ -10,28 +10,39 @@ namespace tcp_client
     {
         private System.Net.Sockets.TcpClient client;
 
-
+        /// <summary>
+        /// tcpサーバーに接続する。(SYN)
+        /// </summary>
+        /// <param name="ip">tcpサーバーのipアドレス</param>
+        /// <param name="port">tcpサーバーのポート番号</param>
+        /// <returns></returns>
         public async Task ConnectAsync(string ip, int port)
         {
             client = new System.Net.Sockets.TcpClient();
             try
             {
                 await client.ConnectAsync(ip, port);
-                Debug.WriteLine("Connect");
+                Debug.WriteLine("connected");
             }
             catch(SocketException e)
             {
+                Debug.WriteLine("connect failed");
                 Debug.WriteLine(e.ToString());
                 DisConnect();
             }
             catch(Exception x)
             {
+                Debug.WriteLine("connect failed");
                 Debug.WriteLine(x.ToString());
                 DisConnect();
             }
             
         }
 
+        /// <summary>
+        /// tcpサーバーにメッセージを送信する
+        /// </summary>
+        /// <param name="message">送信するメッセージ</param>
         public void Send(string message)
         {
             try
@@ -40,25 +51,29 @@ namespace tcp_client
                 Encoding enc = Encoding.UTF8;
                 byte[] sendBytes = enc.GetBytes(message);
                 ns.Write(sendBytes, 0, sendBytes.Length);
-                Debug.WriteLine($"Send:{message}");
+                Debug.WriteLine($"sent message:{message}");
             }
             catch(Exception ex)
             {
+                Debug.WriteLine("send failed");
                 Debug.WriteLine(ex.ToString());
                 client.Close();
             }
-            
         }
 
+        /// <summary>
+        /// tcpサーバーから切断する(FIN)
+        /// </summary>
         public void DisConnect()
         {
             try
             {
                 client.Close();
-                Debug.WriteLine("DisConnect");
+                Debug.WriteLine("disConnected");
             }
             catch (Exception ex)
             {
+                Debug.WriteLine("disConnect failed");
                 Debug.WriteLine(ex.ToString());
             }
         }
