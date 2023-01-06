@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Security.Authentication;
@@ -11,6 +12,9 @@ namespace tcp_client
 {
     public class SslTcpClient
     {
+        public delegate byte[] ReceiveMessageCallback(byte[] message, IPEndPoint endPoint);
+        public event ReceiveMessageCallback DoAction;
+
         private System.Net.Sockets.TcpClient _client;
         private SslStream _sslStream;
 
@@ -21,9 +25,11 @@ namespace tcp_client
               SslPolicyErrors sslPolicyErrors)
         {
             if (sslPolicyErrors == SslPolicyErrors.None)
+            {
                 return true;
+            }
 
-            Console.WriteLine("Certificate error: {0}", sslPolicyErrors);
+            Debug.WriteLine("Certificate error: {0}", sslPolicyErrors);
 
             return false;
         }
@@ -35,14 +41,13 @@ namespace tcp_client
         /// <param name="serverName">tcpサーバーのipアドレス</param>
         /// <param name="port">tcpサーバーのポート番号</param>
         /// <returns></returns>
-        public void Connect(string serverName, int port)
+        public async Task Connect(string serverName, int port)
         {
             _client = new System.Net.Sockets.TcpClient();
             try
             {
-                _client.Connect(serverName, port);
-                Debug.WriteLine("connected");
-
+                await _client.ConnectAsync("127.0.0.1", port);
+                
                 _sslStream = new SslStream(
                     _client.GetStream(),
                     false,
@@ -60,19 +65,26 @@ namespace tcp_client
                     Debug.WriteLine(aex.ToString());
                     return;
                 }
+
+                Debug.WriteLine("connected");
             }
             catch (SocketException e)
             {
                 Debug.WriteLine("connect failed");
                 Debug.WriteLine(e.ToString());
                 DisConnect();
+                return;
             }
             catch (Exception x)
             {
                 Debug.WriteLine("connect failed");
                 Debug.WriteLine(x.ToString());
                 DisConnect();
+                return;
             }
+
+            _ = ReceiveMessage();
+
 
         }
 
@@ -80,7 +92,7 @@ namespace tcp_client
         /// tcpサーバーにメッセージを送信する
         /// </summary>
         /// <param name="message">送信するメッセージ</param>
-        public void Send(string message, string serverName)
+        public void Send(string message)
         {
             try
             {
@@ -93,6 +105,55 @@ namespace tcp_client
             {
                 Debug.WriteLine("send failed");
                 Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        private async Task<bool> ReceiveMessage()
+        {
+            Debug.WriteLine("receive start");
+            try
+            {
+                while (true)
+                {
+                    if (!_client.Connected)
+                    {
+                        return true;
+                    }
+
+                    byte[] receivedMessage = null;
+                    byte[] result_bytes = new byte[_client.ReceiveBufferSize];
+                    int bytes = -1;
+                    using (var ms = new System.IO.MemoryStream())
+                    {
+                        // メッセージを読み取る。
+                        bytes = await _sslStream.ReadAsync(result_bytes, 0, result_bytes.Length);
+                        ms.Write(result_bytes, 0, bytes);
+                        receivedMessage = ms.ToArray();
+                    }
+
+                    if (bytes == 0)
+                    {
+                        Debug.WriteLine("receive end");
+                        return true;
+                    }
+
+                    string str = "";
+                    for (int i = 0; i < receivedMessage.Length; i++)
+                    {
+                        str += string.Format("{0:X2}", receivedMessage[i]);
+                    }
+                    var ip = ((IPEndPoint)_client.Client.RemoteEndPoint).Address;
+                    var port = ((IPEndPoint)_client.Client.RemoteEndPoint).Port;
+                    Debug.WriteLine($"from {ip}:{port} - received massage: {str}");
+
+                    // 受信データに対して何らかの処理をする。
+                    var responce = DoAction(receivedMessage, (IPEndPoint)_client.Client.RemoteEndPoint);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
             }
         }
 
