@@ -57,7 +57,6 @@ namespace tcp_client
             {
                 Debug.WriteLine("send failed");
                 Debug.WriteLine(ex.ToString());
-                client.Close();
             }
         }
 
