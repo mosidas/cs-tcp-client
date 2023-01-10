@@ -58,11 +58,11 @@ namespace tcp_client
                 {
                     _sslStream.AuthenticateAsClient(serverName);
                 }
-                catch (AuthenticationException aex)
+                catch (Exception ex)
                 {
-                    Debug.WriteLine("authentication failed - closing the connection.");
+                    Debug.WriteLine("authentication failed");
                     DisConnect();
-                    Debug.WriteLine(aex.ToString());
+                    Debug.WriteLine(ex.ToString());
                     return;
                 }
 

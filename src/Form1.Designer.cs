@@ -97,7 +97,7 @@ namespace tcp_client
             // 
             // text_message
             // 
-            this.text_message.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.text_message.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.text_message.Location = new System.Drawing.Point(62, 135);
             this.text_message.Multiline = true;
             this.text_message.Name = "text_message";
@@ -147,7 +147,7 @@ namespace tcp_client
             // 
             // text_responce
             // 
-            this.text_responce.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.text_responce.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.text_responce.Location = new System.Drawing.Point(62, 454);
             this.text_responce.Multiline = true;
             this.text_responce.Name = "text_responce";
