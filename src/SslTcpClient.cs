@@ -50,7 +50,7 @@ namespace tcp_client
                 
                 _sslStream = new SslStream(
                     _client.GetStream(),
-                    false,
+                    true,
                     new RemoteCertificateValidationCallback(ValidateServerCertificate),
                     null);
 
@@ -86,6 +86,22 @@ namespace tcp_client
             _ = ReceiveMessage();
 
 
+        }
+
+        public void Renegotiation(string serverName)
+        {
+            // TODO: wip
+            try
+            {
+                _sslStream.AuthenticateAsClient(serverName);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("authentication failed");
+                //DisConnect();
+                Debug.WriteLine(ex.ToString());
+                return;
+            }
         }
 
         /// <summary>

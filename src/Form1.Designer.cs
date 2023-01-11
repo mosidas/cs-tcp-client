@@ -41,6 +41,7 @@ namespace tcp_client
             this.label2 = new System.Windows.Forms.Label();
             this.text_responce = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.button_renego = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_send
@@ -165,11 +166,23 @@ namespace tcp_client
             this.label3.TabIndex = 102;
             this.label3.Text = "responce";
             // 
+            // button_renego
+            // 
+            this.button_renego.Font = new System.Drawing.Font("Meiryo UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button_renego.Location = new System.Drawing.Point(63, 74);
+            this.button_renego.Name = "button_renego";
+            this.button_renego.Size = new System.Drawing.Size(198, 39);
+            this.button_renego.TabIndex = 103;
+            this.button_renego.Text = "renegotiation";
+            this.button_renego.UseVisualStyleBackColor = true;
+            this.button_renego.Click += new System.EventHandler(this.button_renego_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(993, 684);
+            this.Controls.Add(this.button_renego);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.text_responce);
             this.Controls.Add(this.label2);
@@ -204,6 +217,7 @@ namespace tcp_client
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox text_responce;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button_renego;
     }
 }
 

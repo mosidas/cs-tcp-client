@@ -59,5 +59,10 @@ namespace tcp_client
             _client.DisConnect();
             label_status.BackColor = Color.LightGray;
         }
+
+        private void button_renego_Click(object sender, EventArgs e)
+        {
+            _client.Renegotiation(text_ip.Text);
+        }
     }
 }
