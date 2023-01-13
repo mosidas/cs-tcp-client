@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,10 @@ namespace tcp_client
 {
     public class TcpClient
     {
-        private System.Net.Sockets.TcpClient client;
+        public delegate byte[] ReceiveMessageCallback(byte[] message, IPEndPoint endPoint);
+        public event ReceiveMessageCallback DoAction;
+
+        private System.Net.Sockets.TcpClient _client;
 
         /// <summary>
         /// tcpサーバーに接続する。(SYN)
@@ -16,12 +20,12 @@ namespace tcp_client
         /// <param name="ip">tcpサーバーのipアドレス</param>
         /// <param name="port">tcpサーバーのポート番号</param>
         /// <returns></returns>
-        public async Task ConnectAsync(string ip, int port)
+        public async Task Connect(string ip, int port)
         {
-            client = new System.Net.Sockets.TcpClient();
+            _client = new System.Net.Sockets.TcpClient();
             try
             {
-                await client.ConnectAsync(ip, port);
+                await _client.ConnectAsync("127.0.0.1", port);
                 Debug.WriteLine("connected");
             }
             catch(SocketException e)
@@ -47,7 +51,7 @@ namespace tcp_client
         {
             try
             {
-                var ns = client.GetStream();
+                var ns = _client.GetStream();
                 Encoding enc = Encoding.UTF8;
                 byte[] sendBytes = enc.GetBytes(message);
                 ns.Write(sendBytes, 0, sendBytes.Length);
@@ -67,7 +71,10 @@ namespace tcp_client
         {
             try
             {
-                client.Close();
+                if (_client != null)
+                {
+                    _client.Close();
+                }
                 Debug.WriteLine("disconnected");
             }
             catch (Exception ex)

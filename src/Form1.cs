@@ -7,13 +7,13 @@ namespace tcp_client
 {
     public partial class Form1 : Form
     {
-        //public TcpClient Client;
         private readonly SslTcpClient _client;
+        //private readonly TcpClient _client;
 
         public Form1()
         {
             InitializeComponent();
-            //Client = new TcpClient();
+            //_client = new TcpClient();
             _client = new SslTcpClient();
             _client.DoAction += WriteReceivedMessageInvoke;
             label_status.Text = "  ";
